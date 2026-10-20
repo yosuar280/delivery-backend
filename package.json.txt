@@ -1,13 +1,12 @@
 {
   "name": "delivery-backend",
   "version": "1.0.0",
-  "description": "Servidor de tracking para delivery",
+  "description": "Backend para delivery",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "socket.io": "^4.7.5"
+    "express": "^4.18.2"
   }
 }
