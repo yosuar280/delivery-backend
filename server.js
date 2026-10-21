@@ -13,7 +13,7 @@ const io = new Server(server, {
 
 app.use(express.json());
 
-// Base de datos simulada en memoria
+// Base de datos simulada
 const pedidos = {
   "1": {
     orderId: "1",
@@ -37,12 +37,10 @@ const pedidos = {
   }
 };
 
-// Ruta base para verificar servidor activo
 app.get('/', (req, res) => {
   res.send('Servidor de Delivery corriendo correctamente');
 });
 
-// Ruta API para obtener la información del pedido por ID
 app.get('/api/orders/:orderId', (req, res) => {
   const { orderId } = req.params;
   const pedido = pedidos[orderId];
@@ -57,7 +55,6 @@ app.get('/api/orders/:orderId', (req, res) => {
   }
 });
 
-// WebSockets para actualizar y emitir ubicación GPS en tiempo real
 io.on('connection', (socket) => {
   console.log('Cliente conectado:', socket.id);
 
@@ -69,7 +66,7 @@ io.on('connection', (socket) => {
       pedidos[pedidoId].motorizado.longitude = longitud;
     }
 
-    io.emit(tracking_pedido_${pedidoId}, {
+    io.emit('tracking_pedido_' + pedidoId, {
       pedidoId: pedidoId,
       latitud: latitud,
       longitud: longitud,
@@ -84,5 +81,5 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(Servidor ejecutándose en el puerto ${PORT});
+  console.log('Servidor ejecutandose en el puerto ' + PORT);
 });
