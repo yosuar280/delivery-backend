@@ -1,20 +1,3 @@
-{
-  "name": "delivery-backend",
-  "version": "1.0.0",
-  "description": "Backend para seguimiento de delivery en tiempo real - El Búnker Gourmet",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "http": "^0.0.1-security",
-    "socket.io": "^4.7.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
-}
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -54,7 +37,7 @@ const pedidos = {
   }
 };
 
-// Ruta base para verificar que el servidor esté activo
+// Ruta base para verificar servidor activo
 app.get('/', (req, res) => {
   res.send('Servidor de Delivery corriendo correctamente');
 });
